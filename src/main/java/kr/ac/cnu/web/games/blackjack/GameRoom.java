@@ -67,7 +67,6 @@ public class GameRoom {
             player.lost();
             this.isFinished = true;
         }
-
     }
 
     public void stand(String name) {
