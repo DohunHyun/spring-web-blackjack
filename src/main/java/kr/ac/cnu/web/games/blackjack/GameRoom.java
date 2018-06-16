@@ -68,8 +68,7 @@ public class GameRoom {
             player.lost();
             this.isFinished = true;
         }
-
-        if(player.isCheckDoubleDown()) {
+        else if(player.isCheckDoubleDown()) { // doubledown 처리 
             player.stand();
             playDealer();
         }
