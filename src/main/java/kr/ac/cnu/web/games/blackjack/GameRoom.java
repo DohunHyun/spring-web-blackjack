@@ -78,16 +78,13 @@ public class GameRoom {
         Player player = playerList.get(name);
         player.stand();
     }
-
     public void playDealer() {
         dealer.play();
         evaluator.evaluate();
         this.isFinished = true;
     }
-
     public void doubleDown(String name) {
         Player player = playerList.get(name);
         player.doubleDown();
     }
-
 }
