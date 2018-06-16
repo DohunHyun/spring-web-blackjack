@@ -76,11 +76,6 @@ public class BlackjackService {
         GameRoom gameRoom = gameRoomMap.get(roomId);
         gameRoom.doubleDown(user.getName());
 
-        if(gameRoom.getPlayerList().get(user.getName()).getHand().getCardList().size() < 3 && checkDoubleDown ) {
-            gameRoom.doubleDown(user.getName());
-            checkDoubleDown = false;
-        }
-
         return gameRoom;
     }
 }

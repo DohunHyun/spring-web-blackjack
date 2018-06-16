@@ -503,6 +503,7 @@
             contentType:'application/json;',
         }).done(function(data) {
             drawGameRoom(data);
+            $('#doubledown').show();
         });
     })
 
@@ -572,7 +573,7 @@
             $('#deal').show();
             $('#more').show();
             $('#less').show();
-            $('#doubledown').show();
+            $('#doubledown').hide();
             $('#hit').hide();
             $('#stand').hide();
         } else {
