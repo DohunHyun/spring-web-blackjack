@@ -39,7 +39,7 @@ public class BlackApiController {
     }
 
     @PostMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User singup(@RequestBody String name) {
+    public User signup(@RequestBody String name) {
         // TODO check already used name
         Optional<User> userOptional = userRepository.findById(name);
         if (userOptional.isPresent()) {

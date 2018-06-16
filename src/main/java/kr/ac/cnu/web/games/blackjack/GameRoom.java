@@ -58,10 +58,14 @@ public class GameRoom {
         playerList.forEach((s, player) -> player.deal());
     }
 
-    public Card hit(String name) {
+    public void hit(String name) {
         Player player = playerList.get(name);
+        player.hitCard();
 
-        return player.hitCard();
+        if(player.getHand().getCardSum() > 21) // 자신의 카드 총합이 21이 넘으면
+            evaluator.evaluate();
+            this.isFinished = true;
+
     }
 
     public void stand(String name) {
