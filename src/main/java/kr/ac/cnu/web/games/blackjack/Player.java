@@ -46,16 +46,19 @@ public class Player {
 
     public void win() {
         balance += currentBet * 2;
-        currentBet = 0;
+        currentBet = 1000;
+        balance -= currentBet;
     }
 
     public void tie() {
         balance += currentBet;
-        currentBet = 0;
+        currentBet = 1000;
+        balance -= currentBet;
     }
 
     public void lost() {
-        currentBet = 0;
+        currentBet = 1000;
+        balance -= currentBet;
     }
 
     public Card hitCard() {
