@@ -44,6 +44,11 @@ public class Player {
         hand.drawCard();
     }
 
+    public void blackjackwin(){ //blackjack으로 이기는 경우 1.5배
+        balance += currentBet * 2.5;
+        currentBet = 0;
+    }
+
     public void win() {
         balance += currentBet * 2;
         currentBet = 0;
