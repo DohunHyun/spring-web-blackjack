@@ -25,13 +25,25 @@ public class Hand {
 
     public int getCardSum() {
         int sum = 0;    //King,Queen,Jack에 대해서 10으로 계산
+        int countAce = 0;
+
         for (Card card : cardList) {
+            if(card.getRank() == 1) { // Ace의 초기값을 계산하기 편하게 하기위해 11로 정해준다.
+                countAce++;
+                sum += 10;
+            }
+
             if (card.getRank() > 10) {
                 sum += 10;
             } else {
                 sum += card.getRank();
             }
         }
+
+        if(countAce > 0 && sum > 21) { // ace가 있는상황에서 총합이 21이 넘을 경우 ace를 1로 바꿔준다.
+            sum -= 10;
+        }
+
         return sum;
     }
 
