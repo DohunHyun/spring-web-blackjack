@@ -15,6 +15,7 @@ import java.util.Map;
 public class BlackjackService {
     private final int DECK_NUMBER = 1;
     private final Map<String, GameRoom> gameRoomMap = new HashMap<>();
+    private boolean checkDoubleDown = true;
 
     public GameRoom createGameRoom(User user) {
         Deck deck = new Deck(DECK_NUMBER);
@@ -67,6 +68,18 @@ public class BlackjackService {
 
         gameRoom.stand(user.getName());
         gameRoom.playDealer();
+
+        return gameRoom;
+    }
+  
+    public GameRoom doubleDown(String roomId, User user) {
+        GameRoom gameRoom = gameRoomMap.get(roomId);
+        gameRoom.doubleDown(user.getName());
+
+        if(gameRoom.getPlayerList().get(user.getName()).getHand().getCardList().size() < 3 && checkDoubleDown ) {
+            gameRoom.doubleDown(user.getName());
+            checkDoubleDown = false;
+        }
 
         return gameRoom;
     }

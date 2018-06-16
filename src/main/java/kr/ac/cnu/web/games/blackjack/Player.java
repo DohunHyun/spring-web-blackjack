@@ -16,11 +16,14 @@ public class Player {
     private boolean isPlaying;
     @Getter
     private Hand hand;
+    @Getter
+    private boolean checkDoubleDown;
+
 
     public Player(long seedMoney, Hand hand) {
         this.balance = seedMoney;
         this.hand = hand;
-
+        checkDoubleDown = false;
         isPlaying = false;
     }
 
@@ -74,5 +77,15 @@ public class Player {
     public void stand() {
         this.isPlaying = false;
     }
+
+    public void doubleDown() {
+        if(balance < currentBet) {
+            throw new NotEnoughBalanceException();
+        }
+        balance -= currentBet;
+        currentBet = currentBet * 2;
+        checkDoubleDown = true;
+    }
+
 
 }
