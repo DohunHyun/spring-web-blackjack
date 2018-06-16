@@ -66,6 +66,7 @@ public class GameRoom {
             evaluator.evaluate();
             this.isFinished = true;
         }
+
     }
 
     public void stand(String name) {
