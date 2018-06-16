@@ -28,6 +28,7 @@ public class Player {
     }
 
     public void reset() {
+        checkDoubleDown = false;
         hand.reset();
         isPlaying = false;
     }
