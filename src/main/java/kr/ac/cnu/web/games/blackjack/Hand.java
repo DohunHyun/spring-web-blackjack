@@ -39,9 +39,10 @@ public class Hand {
                 sum += card.getRank();
             }
         }
-
-        if(countAce > 0 && sum > 21) { // ace가 있는상황에서 총합이 21이 넘을 경우 ace를 1로 바꿔준다.
-            sum -= 10;
+        for(int i = 0; i < countAce; i++) {
+            if(countAce > 0 && sum > 21) { // ace가 있는상황에서 총합이 21이 넘을 경우 ace를 1로 바꿔준다.
+                sum -= 10;
+            }
         }
 
         return sum;

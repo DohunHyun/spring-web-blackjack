@@ -65,7 +65,7 @@ public class Player {
 
     public void win() {
         balance += currentBet * 2;
-        currentBet = min_Bet;
+
         balance -= currentBet;
         if(balance < min_Bet){
             currentBet = balance;
@@ -98,7 +98,7 @@ public class Player {
     }
 
     public void doubleDown() {
-        if(balance < currentBet) {
+        if(balance < 2 * currentBet) {
             throw new NotEnoughBalanceException();
         }
         balance -= currentBet;
