@@ -422,13 +422,14 @@
     <div class="clear"></div>
     <div class="player-cards"></div>
     <div class="buttons"><div class="btn" id="hit">Hit</div><div class="btn" id="stand">Stand</div></div>
+    <div class="buttons"><div class="btn" id="doubledown">DoubleDown</div></div>
     <div class="buttons"><div class="btn" id="deal">Deal</div></div>
     <div class="betting-area">
         <b>Your Bet</b><br>
         <div id="bet" class="bet money">0</div>
         <div>
-            <div class="btn" id="more">+</div>
             <div class="btn" id="less">-</div>
+            <div class="btn" id="more">+</div>
         </div>
         <div class="clear"></div>
     </div>
@@ -521,6 +522,18 @@
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/stand',
+            headers: {
+                'name':user.name
+            },
+        }).done(function(data) {
+            drawGameRoom(data);
+        });
+    })
+
+    $('#doubledown').click(function() {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/doubledown',
             headers: {
                 'name':user.name
             },

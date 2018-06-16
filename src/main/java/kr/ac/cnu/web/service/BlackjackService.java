@@ -70,5 +70,4 @@ public class BlackjackService {
 
         return gameRoom;
     }
-
 }
