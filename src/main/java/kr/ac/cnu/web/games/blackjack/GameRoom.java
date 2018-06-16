@@ -62,9 +62,10 @@ public class GameRoom {
         Player player = playerList.get(name);
         player.hitCard();
 
-        if(player.getHand().getCardSum() > 21) // 자신의 카드 총합이 21이 넘으면
+        if(player.getHand().getCardSum() > 21) { // 자신의 카드 총합이 21이 넘으면
             evaluator.evaluate();
             this.isFinished = true;
+        }
 
     }
 
