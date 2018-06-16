@@ -30,4 +30,8 @@ public class Hand {
     public void reset() {
         cardList.clear();
     }
+
+    public int get_count(){
+        return cardList.size();
+    }
 }

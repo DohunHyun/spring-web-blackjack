@@ -29,7 +29,9 @@ public class Evaluator {
 
         playerMap.forEach((s, player) -> {
             int playerResult = player.getHand().getCardSum();
-            if (playerResult > 21) {
+            if(playerResult == 21 && player.getHand().get_count() == 2){
+                player.blackjackwin();
+            }else if (playerResult > 21) {
                 player.lost();
             } else if (playerResult > dealerResult) {
                 player.win();
