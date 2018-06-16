@@ -1,5 +1,11 @@
 ﻿# Porject 
 
+17조
+김미지
+전철민
+전형진
+현도훈
+
 ## 방법
 1. 각 조별로 Group 을 구성해서 Robinkim0182/spring-web/homework_week3/README.md 에 업데이트 (지금! 바로!)
 1. 각 그룹장은 Robinkim0182/spring-web repository 를 clone
