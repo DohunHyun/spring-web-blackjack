@@ -21,6 +21,7 @@ public class Evaluator {
 
         int dealerResult = dealer.getHand().getCardSum();
 
+
         if (dealerResult > 21) {
             playerMap.forEach((s, player) -> player.win());
 

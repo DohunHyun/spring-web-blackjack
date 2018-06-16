@@ -67,6 +67,11 @@ public class GameRoom {
             this.isFinished = true;
         }
 
+        if(player.isCheckDoubleDown()) {
+            player.stand();
+            playDealer();
+        }
+
     }
 
     public void stand(String name) {
@@ -79,6 +84,11 @@ public class GameRoom {
         dealer.play();
         evaluator.evaluate();
         this.isFinished = true;
+    }
+
+    public void doubleDown(String name) {
+        Player player = playerList.get(name);
+        player.doubleDown();
     }
 
 }
