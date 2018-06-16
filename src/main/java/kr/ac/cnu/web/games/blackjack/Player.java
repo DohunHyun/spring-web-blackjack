@@ -68,7 +68,6 @@ public class Player {
         // 이전 금액을 default bet 금액으로 설정, 고로 승리 시 bet 금액 만큼 만 받는다.
         // 그냥 승리는 1배
         balance += currentBet;
-
     }
 
     public void tie() {
@@ -92,7 +91,7 @@ public class Player {
     }
 
     public void doubleDown() {
-        if(balance < currentBet) {
+        if(balance < 2 * currentBet) {
             throw new NotEnoughBalanceException();
         }
         balance -= currentBet;
