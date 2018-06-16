@@ -46,7 +46,8 @@ public class Player {
 
     public void blackjackwin(){ //blackjack으로 이기는 경우 1.5배
         balance += currentBet * 2.5;
-        currentBet = 0;
+        currentBet = 1000;
+        balance -= currentBet;
     }
 
     public void win() {
