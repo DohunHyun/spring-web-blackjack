@@ -13,6 +13,8 @@ public class Player {
     @Getter
     private long currentBet;
     @Getter
+    private long min_Bet = 1000;
+    @Getter
     private boolean isPlaying;
     @Getter
     private Hand hand;
@@ -30,9 +32,13 @@ public class Player {
     }
 
     public void placeBet(long bet) {
-        if(balance < bet) {
+        if (balance < min_Bet) {
+            bet = balance;
+        }
+        if (balance < bet) {
             throw new NotEnoughBalanceException();
         }
+
         balance -= bet;
         currentBet = bet;
 
@@ -44,27 +50,39 @@ public class Player {
         hand.drawCard();
     }
 
-    public void blackjackwin(){ //blackjack으로 이기는 경우 1.5배
+    public void blackjackwin() { //blackjack으로 이기는 경우 1.5배
         balance += currentBet * 2.5;
-        currentBet = 1000;
+        currentBet = min_Bet;
         balance -= currentBet;
+        if(balance < min_Bet){
+            currentBet = balance;
+        }
     }
 
     public void win() {
         balance += currentBet * 2;
-        currentBet = 1000;
+        currentBet = min_Bet;
         balance -= currentBet;
+        if(balance < min_Bet){
+            currentBet = balance;
+        }
     }
 
     public void tie() {
         balance += currentBet;
-        currentBet = 1000;
+        currentBet = min_Bet;
         balance -= currentBet;
+        if(balance < min_Bet){
+            currentBet = balance;
+        }
     }
 
     public void lost() {
-        currentBet = 1000;
+        currentBet = min_Bet;
         balance -= currentBet;
+        if(balance < min_Bet){
+            currentBet = balance;
+        }
     }
 
     public Card hitCard() {
