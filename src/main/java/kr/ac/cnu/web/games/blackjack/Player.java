@@ -20,6 +20,10 @@ public class Player {
     private Hand hand;
     @Getter
     private boolean checkDoubleDown;
+    @Getter
+    private String result = "lost";
+    @Getter
+    private double r_result = 0;
 
 
     public Player(long seedMoney, Hand hand) {
@@ -33,6 +37,7 @@ public class Player {
         checkDoubleDown = false;
         hand.reset();
         isPlaying = false;
+        result = "lost";
     }
 
     public void placeBet(long bet) {
@@ -60,6 +65,7 @@ public class Player {
     public void blackjackwin() { //blackjack으로 이기는 경우 1.5배
         // 이전 금액을 default bet 금액으로 설정, 고로 승리 시 bet 금액 만큼 만 받는다.
         // blackjackwin은 1.5배
+        r_result = currentBet * 1.5;
         balance += currentBet * 1.5;
     }
 
@@ -67,18 +73,23 @@ public class Player {
         // 이전 금액을 default bet 금액으로 설정, 고로 승리 시 bet 금액 만큼 만 받는다.
         // 그냥 승리는 1배
         balance += currentBet;
+        r_result = currentBet;
+        result = "win";
     }
 
     public void tie() {
         // 이전 금액을 default bet 금액으로 설정, 비긴경기는 아무거도 하지않아도 된다.
+        result = "draw";
     }
 
     public void lost() {
         // 이전 금액을 default bet 금액으로 설정, 패배는 현재 남은 금액과 비교하여, 가능한지 알아본다.
-        if(balance < currentBet){
+        if (balance < currentBet) {
             currentBet = balance;
         }
         balance -= currentBet;
+        r_result = currentBet;
+        result = "lost";
     }
 
     public Card hitCard() {
@@ -90,11 +101,12 @@ public class Player {
     }
 
     public void doubleDown() {
-        if(balance < 2 * currentBet) {
+        if (balance < 2 * currentBet) {
             throw new NotEnoughBalanceException();
         }
         balance -= currentBet;
         currentBet = currentBet * 2;
+        r_result = currentBet;
         checkDoubleDown = true;
     }
 

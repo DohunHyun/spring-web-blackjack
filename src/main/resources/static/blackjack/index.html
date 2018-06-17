@@ -50,11 +50,13 @@
         line-height: 40px;
         background-color: #FFFFFF;
     }
-    #login{
+
+    #login {
         background-image: url('../images/main_back.jpg');
         background-repeat: no-repeat;
         background-position: center;
     }
+
     .clear {
         clear: both;
     }
@@ -944,10 +946,11 @@
         font-family: "Lato", sans-serif;
     }
 
-    #input_login_name{
+    #input_login_name {
         border: #d6e9c6 solid 4px;
         border-radius: 7px;
     }
+
     .sidenav {
         height: 100%;
         width: 0;
@@ -999,6 +1002,40 @@
         font-size: 15px;
     }
 
+    #alert {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        display: none;
+    }
+
+    #writingTransparentBorder {
+        background-color: #000000;
+        height: 150%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        margin: 0;
+        position: absolute;
+        opacity: 0.5;
+        z-index: 3;
+    }
+
+    #Add_Section {
+        display: none;
+    }
+
+    #Button_Click {
+        background-color: #ffffff;
+        width: 400px;
+        height: 350px;
+        margin: 100px 250px;
+        position: absolute;
+        z-index: 3;
+        border-radius: 5px;
+    }
+
+
 </style>
 </head>
 <body>
@@ -1006,7 +1043,8 @@
     <div>
         <br/>
         <span style="color:white"> ID : </span>
-        <input type="text" id="input_login_name" autofocus="autofocus" title="ID를 입력해주세요." onkeypress="if(event.keyCode==13) {login_onclick(); return false;}"/>
+        <input type="text" id="input_login_name" autofocus="autofocus" title="ID를 입력해주세요."
+               onkeypress="if(event.keyCode==13) {login_onclick(); return false;}"/>
         <div class="buttons">
             <div class="btn" id="login_button" onclick="login_onclick()">Login</div>
             <div class="btn" id="signup_button">Signup</div>
@@ -1027,6 +1065,17 @@
         <div class="clear"></div>
     </div>
 </div>
+
+<section id="Add_Section">
+    <div id="writingTransparentBorder">
+    </div>
+    <div id="Button_Click">
+        <div>
+            <a style="color: black" class="closebtn" onclick="close()">&times;</a>
+        </div>
+    </div>
+</section>
+
 
 <div class="page" id="lobby" style="display: none">
 
@@ -1049,7 +1098,7 @@
     <div class="player-cards"></div>
     <div class="buttons">
         <div class="btn" id="hit">Hit</div>
-        <div class="btn" id="stand">Stand</div>
+        <div class="btn" id="stand" onclick="add_todo_button()">Stand</div>
     </div>
     <div class="buttons">
         <div class="btn" id="doubledown">DoubleDown</div>
@@ -1075,6 +1124,19 @@
 <script>
     var user;
     var gameRoomId;
+    var winner;
+    var money;
+
+    function add_todo_button() {
+        var modal = document.getElementById('Add_Section');
+        modal.style.display = "block";
+    }
+
+    function close_modal() {
+        var modal = document.getElementById('Add_Section');
+        modal.style.display = "none";
+    }
+
 
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
@@ -1084,35 +1146,50 @@
         document.getElementById("mySidenav").style.width = "0";
     }
 
+    function resultfunc() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/api/black-jack/rankAccount'
+        }).done(function (data) {
+            var html = "<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+            for (var i = 0; i < data.length; i++) {
+                html += "<b> &nbsp; &nbsp;" + (i + 1) + ". " + data[i].name + " " + data[i].account + "</b><br/>"
+            }
+            $('#mySidenav').html(html);
+
+        });
+    }
+
+
     function login_onclick() {
-            var loginName = $('#input_login_name').val();
+        var loginName = $('#input_login_name').val();
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/api/black-jack/login',
+            data: loginName,
+            contentType: 'application/json;'
+        }).done(function (data) {
+            $('#login').hide();
+            $('#lobby').show();
+            user = data;
+            $('#name').html(user.name);
+            $('#money').html(user.account);
+            $('#user_info').show();
+
             $.ajax({
-                type: 'POST',
-                url: 'http://localhost:8080/api/black-jack/login',
-                data: loginName,
-                contentType: 'application/json;'
+                type: 'GET',
+                url: 'http://localhost:8080/api/black-jack/rankAccount'
             }).done(function (data) {
-                $('#login').hide();
-                $('#lobby').show();
-                user = data;
-                $('#name').html(user.name);
-                $('#money').html(user.account);
-                $('#user_info').show();
+                var html = "<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                for (var i = 0; i < data.length; i++) {
+                    html += "<b> &nbsp; &nbsp;" + (i + 1) + ". " + data[i].name + " " + data[i].account + "</b><br/>"
+                }
+                $('#mySidenav').html(html);
 
-                $.ajax({
-                    type: 'GET',
-                    url: 'http://localhost:8080/api/black-jack/rankAccount'
-                }).done(function (data) {
-                    var html = "<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
-                    for (var i = 0; i < data.length; i++) {
-                        html += "<b> &nbsp; &nbsp;" + (i + 1) + ". " + data[i].name + " " + data[i].account + "</b><br/>"
-                    }
-                    $('#mySidenav').html(html);
-
-                });
-            }).fail(function () {
-                alert("등록되지 않은 계정입니다.\nSignup을 먼저 해주세요.");
             });
+        }).fail(function () {
+            alert("등록되지 않은 계정입니다.\nSignup을 먼저 해주세요.");
+        });
     }
 
     $('#signup_button').click(function () {
@@ -1175,7 +1252,7 @@
             drawGameRoom(data);
             if (bet <= 10000) {
                 $('#doubledown').show();
-            }else{
+            } else {
                 alert("최대 배팅 가능 금액 10000원을 넘었습니다. 다시 배팅해주세요.");
             }
         });
@@ -1244,6 +1321,9 @@
     function drawGameRoom(gameRoom) {
         console.log(gameRoom);
         if (gameRoom.finished) {
+            $('#Button_Click').html(
+                "나의 상태는 " + gameRoom.playerList[user.name].result + " 변경 된 금액은 " + gameRoom.playerList[user.name].r_result + "<input type='button' style='color: black; float:right' class='closebtn' onclick='close_modal();' value='X'>");
+
             $('#deal').show();
             $('#more').show();
             $('#less').show();
@@ -1350,6 +1430,8 @@
 
         return "<div class='card " + className + "' data-value='" + rank + "'></div>";
     }
+
+
 </script>
 
 </html>
