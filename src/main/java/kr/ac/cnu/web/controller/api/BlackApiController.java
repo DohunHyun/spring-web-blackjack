@@ -60,7 +60,6 @@ public class BlackApiController {
     @PostMapping("/rooms")
     public GameRoom createRoom(@RequestHeader("name") String name) {
         User user = this.getUserFromSession(name);
-
         return blackjackService.createGameRoom(user);
     }
 
@@ -92,13 +91,21 @@ public class BlackApiController {
         return blackjackService.doubleDown(roomId, user);
     }
 
+    @PostMapping("/rooms/{roomId}/updateAccount")
+    public void updateAccount(@RequestHeader("name") String name, @PathVariable String roomId) {
+        User user = this.getUserFromSession(name);
+        long result = blackjackService.getPlayerAccount(roomId,name);
+        user.setAccount(result);
+       userRepository.save(user);
+    }
+
+
     @GetMapping("/rooms/{roomId}")
     public GameRoom getGameRoomData(@PathVariable String roomId) {
         return blackjackService.getGameRoom(roomId);
     }
 
-
     private User getUserFromSession(String name) {
         return userRepository.findById(name).orElseThrow(() -> new NoLoginException());
     }
-}
+ }

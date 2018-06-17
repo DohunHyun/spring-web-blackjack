@@ -87,4 +87,9 @@ public class GameRoom {
         Player player = playerList.get(name);
         player.doubleDown();
     }
+
+    public long getPlayerAccount(String name) {
+        Player player = playerList.get(name);
+        return player.getBalance()+player.getCurrentBet();
+    }
 }

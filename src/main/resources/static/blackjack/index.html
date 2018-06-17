@@ -576,6 +576,13 @@
             $('#doubledown').hide();
             $('#hit').hide();
             $('#stand').hide();
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/updateAccount',
+                headers: {
+                    'name':user.name
+                },
+            });
         } else {
             $('#deal').hide();
             $('#more').hide();
