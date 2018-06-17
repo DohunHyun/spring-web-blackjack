@@ -5,472 +5,466 @@
     <link rel="shortcut icon" href="./favicon.ico">
     <title>BlackJack_Realcoding</title>
 </head>
-    <style>
-        /* Reset */
-        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-
-            margin:0;
-
-            padding:0;
-
-            border:0;
-
-            font-size:100%;
-
-            vertical-align:baseline;
-
-        }
-
-        h1{
-            font-size:35px;
-            text-align: center;
-            line-height: 40px;
-        }
-
-        h2{
-            font-size:30px;
-            text-align: center;
-            line-height: 40px;
-        }
-
-
-        p{
-            font-size:20px;
-            line-height: 40px;
-        }
-
-        a{
-            text-decoration: none;
-            color: #06C;
-        }
-
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            color: #333;
-            font-size: 15px;
-            line-height: 40px;
-            background-color: #FFFFFF;
-        }
-
-        .clear{
-            clear: both;
-        }
-
-        .top{
-            width: auto;
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: lightgoldenrodyellow;
-            min-height: 50px;
-            text-align: center;
-        }
-
-        .page{
-            width: auto;
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #fff;
-            min-height: 500px;
-            text-align: center;
-        }
-
-        .dealer-cards .card, .player-cards .card {
-            margin-left: 5px;
-        }
-
-        .dealer-cards .card:first-child, .player-cards .card:first-child{
-            margin-left: 0;
-        }
-
-        .new-cards .card:first-child{
-            margin-left: 5px;
-        }
-
-        .dealer-cards, .player-cards{
-            padding-top: 50px;
-            /*width: 164px;*/
-            margin: 0 auto;
-            display: inline-block;
-        }
-
-        .dealer-total, .player-total{
-            margin-top: 10px;
-        }
-
-        .buttons{
-            width: 210px;
-            margin: 20px auto 0 auto;
-        }
-
-        .flipped{
-            background-position: -158px -492px !important;
-        }
-
-
-        .btn {
-            font: bold 13px "Helvetica Neue", Helvetica, Arial, clean, sans-serif !important;
-            text-shadow: 0 -1px 1px rgba(0,0,0,0.25), -2px 0 1px rgba(0,0,0,0.25);
-            border-radius: 5px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-            display: inline-block;
-            white-space: nowrap;
-            text-decoration: none;
-            cursor: pointer;
-
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-            color: #468847;
-            border-style: none;
-            text-align: center;
-            overflow: visible;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            padding-top: 10px;
-            height: 40px;
-            width: 100px;
-            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-            box-sizing: border-box;         /* Opera/IE 8+ */
-        }
-
-        .btn:hover,
-        .btn:focus {
-            background-position: 0 -50px;
-            color: white;
-            background-color: #468847;
-        }
-
-        .btn:active {
-            background-color: #468847;
-            color: white;
-            -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7);
-            -webkit-box-shadow: none;
-        }
-
-        .card {
-            background-image: url(./cards.png);
-            float: left;
-            height: 123px;
-            width: 79px;
-        }
-
-        .message{
-            font-size: 25px;
-            margin-top: 30px;
-            height: 60px;
-        }
-
-        /*.dealer-total{*/
-            /*visibility: hidden;*/
-        /*}*/
-
-
-        /* Clubs */
-        .ace-of-clubs{
-            background-position: 0 0;
-        }
-
-        .two-of-clubs{
-            background-position: -79px 0;
-        }
-
-        .three-of-clubs{
-            background-position: -158px 0;
-        }
-
-        .four-of-clubs{
-            background-position: -237px 0;
-        }
-
-        .five-of-clubs{
-            background-position: -316px 0;
-        }
-
-        .six-of-clubs{
-            background-position: -395px 0;
-        }
-
-        .seven-of-clubs{
-            background-position: -474px 0;
-        }
-
-        .eight-of-clubs{
-            background-position: -553px 0;
-        }
-
-        .nine-of-clubs{
-            background-position: -632px 0;
-        }
-
-        .ten-of-clubs{
-            background-position: -711px 0;
-        }
-
-        .jack-of-clubs{
-            background-position: -790px 0;
-        }
-
-        .queen-of-clubs{
-            background-position: -869px 0;
-        }
-
-        .king-of-clubs{
-            background-position: -948px 0;
-        }
-
-
-
-
-        /* Spades */
-        .ace-of-spades{
-            background-position: 0 -123px;
-        }
-
-        .two-of-spades{
-            background-position: -79px -123px;
-        }
-
-        .three-of-spades{
-            background-position: -158px -123px;
-        }
-
-        .four-of-spades{
-            background-position: -237px -123px;
-        }
-
-        .five-of-spades{
-            background-position: -316px -123px;
-        }
-
-        .six-of-spades{
-            background-position: -395px -123px;
-        }
-
-        .seven-of-spades{
-            background-position: -474px -123px;
-        }
-
-        .eight-of-spades{
-            background-position: -553px -123px;
-        }
-
-        .nine-of-spades{
-            background-position: -632px -123px;
-        }
-
-        .ten-of-spades{
-            background-position: -711px -123px;
-        }
-
-        .jack-of-spades{
-            background-position: -790px -123px;
-        }
-
-        .queen-of-spades{
-            background-position: -869px -123px;
-        }
-
-        .king-of-spades{
-            background-position: -948px -123px;
-        }
-
-
-
-        /* Hearts */
-        .ace-of-hearts{
-            background-position: 0 -246px;
-        }
-
-        .two-of-hearts{
-            background-position: -79px -246px;
-        }
-
-        .three-of-hearts{
-            background-position: -158px -246px;
-        }
-
-        .four-of-hearts{
-            background-position: -237px -246px;
-        }
-
-        .five-of-hearts{
-            background-position: -316px -246px;
-        }
-
-        .six-of-hearts{
-            background-position: -395px -246px;
-        }
-
-        .seven-of-hearts{
-            background-position: -474px -246px;
-        }
-
-        .eight-of-hearts{
-            background-position: -553px -246px;
-        }
-
-        .nine-of-hearts{
-            background-position: -632px -246px;
-        }
-
-        .ten-of-hearts{
-            background-position: -711px -246px;
-        }
-
-        .jack-of-hearts{
-            background-position: -790px -246px;
-        }
-
-        .queen-of-hearts{
-            background-position: -869px -246px;
-        }
-
-        .king-of-hearts{
-            background-position: -948px -246px;
-        }
-
-
-        /* Diamonds */
-        .ace-of-diamonds{
-            background-position: 0 -369px;
-        }
-
-        .two-of-diamonds{
-            background-position: -79px -369px;
-        }
-
-        .three-of-diamonds{
-            background-position: -158px -369px;
-        }
-
-        .four-of-diamonds{
-            background-position: -237px -369px;
-        }
-
-        .five-of-diamonds{
-            background-position: -316px -369px;
-        }
-
-        .six-of-diamonds{
-            background-position: -395px -369px;
-        }
-
-        .seven-of-diamonds{
-            background-position: -474px -369px;
-        }
-
-        .eight-of-diamonds{
-            background-position: -553px -369px;
-        }
-
-        .nine-of-diamonds{
-            background-position: -632px -369px;
-        }
-
-        .ten-of-diamonds{
-            background-position: -711px -369px;
-        }
-
-        .jack-of-diamonds{
-            background-position: -790px -369px;
-        }
-
-        .queen-of-diamonds{
-            background-position: -869px -369px;
-        }
-
-        .king-of-diamonds{
-            background-position: -948px -369px;
-        }
-
-        .bet{
-            width: 50px;
-            margin: 0 auto;
-            height: 40px;
-        }
-
-        .betting-area{
-            width: 70px;
-            margin: 30px auto 30px auto;
-        }
-
-        .betting-area #more{
-            float: left;
-            width: 30px;
-        }
-
-        .betting-area #less{
-            float: left;
-            width: 30px;
-        }
-
-        .name{
-            color: green;
-            font-size: 21px;
-        }
-
-        .money{
-            color: green;
-            font-size: 21px;
-        }
-        #ranking_ac{
-            min-width:250px;
-            max-width:250px;
-            min-height: 550px;
-            background-color: #dff0d8;
-            color: #468847;
-            transition: all 0.3s;
-        }
-        #ranking.active{
-            margin-left: -250px;
-        }
-        #game {
-	        background: transparent url('https://www.clowerweb.com/cors/blackjack/table.png') 0 0 no-repeat;
-	        border-radius: 5px;
-	        color: #333;
-	        font: 14px/17px Helvetica, Arial, Verdana, sans-serif;
-	        height: 550px;
-	        margin: 0 auto;
-	        position: relative;
-	        width: 100%;
-	    }
-
-
-        #money:before {
-            background: #333;
-            content: '';
-            opacity: 0.8;
-        }
-
-        #cash, #bank {
-            color: #FFF;
-            font: 700 18px/20px Helvetica, Arial, Verdana, sans-serif;
-            margin: 12px 0;
-            position: relative;
-            text-shadow: 1px 1px #000;
-            z-index: 1;
-        }
-        #bet, #your{
-            color: black;
-        }
-        #showing{
-            border: 1px solid black;
-            background-color:white;
-            border-radius: 5px;
-            width:80px;
-            height: 60px;
-            margin-bottom: 30px;
-        }
-
-
-            body {
+<style>
+    /* Reset */
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+
+        margin: 0;
+
+        padding: 0;
+
+        border: 0;
+
+        font-size: 100%;
+
+        vertical-align: baseline;
+
+    }
+
+    h1 {
+        font-size: 35px;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    h2 {
+        font-size: 30px;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #06C;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333;
+        font-size: 15px;
+        line-height: 40px;
+        background-color: #FFFFFF;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .top {
+        width: auto;
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: lightgoldenrodyellow;
+        min-height: 50px;
+        text-align: center;
+    }
+
+    .page {
+        width: auto;
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #fff;
+        min-height: 500px;
+        text-align: center;
+    }
+
+    .dealer-cards .card, .player-cards .card {
+        margin-left: 5px;
+    }
+
+    .dealer-cards .card:first-child, .player-cards .card:first-child {
+        margin-left: 0;
+    }
+
+    .new-cards .card:first-child {
+        margin-left: 5px;
+    }
+
+    .dealer-cards, .player-cards {
+        padding-top: 50px;
+        /*width: 164px;*/
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+    .dealer-total, .player-total {
+        margin-top: 10px;
+    }
+
+    .buttons {
+        width: 210px;
+        margin: 20px auto 0 auto;
+    }
+
+    .flipped {
+        background-position: -158px -492px !important;
+    }
+
+    .btn {
+        font: bold 13px "Helvetica Neue", Helvetica, Arial, clean, sans-serif !important;
+        text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25), -2px 0 1px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        white-space: nowrap;
+        text-decoration: none;
+        cursor: pointer;
+
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #468847;
+        border-style: none;
+        text-align: center;
+        overflow: visible;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding-top: 10px;
+        height: 40px;
+        width: 100px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box; /* Firefox, other Gecko */
+        box-sizing: border-box; /* Opera/IE 8+ */
+    }
+
+    .btn:hover,
+    .btn:focus {
+        background-position: 0 -50px;
+        color: white;
+        background-color: #468847;
+    }
+
+    .btn:active {
+        background-color: #468847;
+        color: white;
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
+        -webkit-box-shadow: none;
+    }
+
+    .card {
+        background-image: url(./cards.png);
+        float: left;
+        height: 123px;
+        width: 79px;
+    }
+
+    .message {
+        font-size: 25px;
+        margin-top: 30px;
+        height: 60px;
+    }
+
+    /*.dealer-total{*/
+    /*visibility: hidden;*/
+    /*}*/
+
+    /* Clubs */
+    .ace-of-clubs {
+        background-position: 0 0;
+    }
+
+    .two-of-clubs {
+        background-position: -79px 0;
+    }
+
+    .three-of-clubs {
+        background-position: -158px 0;
+    }
+
+    .four-of-clubs {
+        background-position: -237px 0;
+    }
+
+    .five-of-clubs {
+        background-position: -316px 0;
+    }
+
+    .six-of-clubs {
+        background-position: -395px 0;
+    }
+
+    .seven-of-clubs {
+        background-position: -474px 0;
+    }
+
+    .eight-of-clubs {
+        background-position: -553px 0;
+    }
+
+    .nine-of-clubs {
+        background-position: -632px 0;
+    }
+
+    .ten-of-clubs {
+        background-position: -711px 0;
+    }
+
+    .jack-of-clubs {
+        background-position: -790px 0;
+    }
+
+    .queen-of-clubs {
+        background-position: -869px 0;
+    }
+
+    .king-of-clubs {
+        background-position: -948px 0;
+    }
+
+    /* Spades */
+    .ace-of-spades {
+        background-position: 0 -123px;
+    }
+
+    .two-of-spades {
+        background-position: -79px -123px;
+    }
+
+    .three-of-spades {
+        background-position: -158px -123px;
+    }
+
+    .four-of-spades {
+        background-position: -237px -123px;
+    }
+
+    .five-of-spades {
+        background-position: -316px -123px;
+    }
+
+    .six-of-spades {
+        background-position: -395px -123px;
+    }
+
+    .seven-of-spades {
+        background-position: -474px -123px;
+    }
+
+    .eight-of-spades {
+        background-position: -553px -123px;
+    }
+
+    .nine-of-spades {
+        background-position: -632px -123px;
+    }
+
+    .ten-of-spades {
+        background-position: -711px -123px;
+    }
+
+    .jack-of-spades {
+        background-position: -790px -123px;
+    }
+
+    .queen-of-spades {
+        background-position: -869px -123px;
+    }
+
+    .king-of-spades {
+        background-position: -948px -123px;
+    }
+
+    /* Hearts */
+    .ace-of-hearts {
+        background-position: 0 -246px;
+    }
+
+    .two-of-hearts {
+        background-position: -79px -246px;
+    }
+
+    .three-of-hearts {
+        background-position: -158px -246px;
+    }
+
+    .four-of-hearts {
+        background-position: -237px -246px;
+    }
+
+    .five-of-hearts {
+        background-position: -316px -246px;
+    }
+
+    .six-of-hearts {
+        background-position: -395px -246px;
+    }
+
+    .seven-of-hearts {
+        background-position: -474px -246px;
+    }
+
+    .eight-of-hearts {
+        background-position: -553px -246px;
+    }
+
+    .nine-of-hearts {
+        background-position: -632px -246px;
+    }
+
+    .ten-of-hearts {
+        background-position: -711px -246px;
+    }
+
+    .jack-of-hearts {
+        background-position: -790px -246px;
+    }
+
+    .queen-of-hearts {
+        background-position: -869px -246px;
+    }
+
+    .king-of-hearts {
+        background-position: -948px -246px;
+    }
+
+    /* Diamonds */
+    .ace-of-diamonds {
+        background-position: 0 -369px;
+    }
+
+    .two-of-diamonds {
+        background-position: -79px -369px;
+    }
+
+    .three-of-diamonds {
+        background-position: -158px -369px;
+    }
+
+    .four-of-diamonds {
+        background-position: -237px -369px;
+    }
+
+    .five-of-diamonds {
+        background-position: -316px -369px;
+    }
+
+    .six-of-diamonds {
+        background-position: -395px -369px;
+    }
+
+    .seven-of-diamonds {
+        background-position: -474px -369px;
+    }
+
+    .eight-of-diamonds {
+        background-position: -553px -369px;
+    }
+
+    .nine-of-diamonds {
+        background-position: -632px -369px;
+    }
+
+    .ten-of-diamonds {
+        background-position: -711px -369px;
+    }
+
+    .jack-of-diamonds {
+        background-position: -790px -369px;
+    }
+
+    .queen-of-diamonds {
+        background-position: -869px -369px;
+    }
+
+    .king-of-diamonds {
+        background-position: -948px -369px;
+    }
+
+    .bet {
+        width: 50px;
+        margin: 0 auto;
+        height: 40px;
+    }
+
+    .betting-area {
+        width: 70px;
+        margin: 30px auto 30px auto;
+    }
+
+    .betting-area #more {
+        float: left;
+        width: 30px;
+    }
+
+    .betting-area #less {
+        float: left;
+        width: 30px;
+    }
+
+    .name {
+        color: green;
+        font-size: 21px;
+    }
+
+    .money {
+        color: green;
+        font-size: 21px;
+    }
+
+    #ranking_ac {
+        min-width: 250px;
+        max-width: 250px;
+        min-height: 550px;
+        background-color: #dff0d8;
+        color: #468847;
+        transition: all 0.3s;
+    }
+
+    #ranking.active {
+        margin-left: -250px;
+    }
+
+    #game {
+        background: transparent url('https://www.clowerweb.com/cors/blackjack/table.png') 0 0 no-repeat;
+        border-radius: 5px;
+        color: #333;
+        font: 14px/17px Helvetica, Arial, Verdana, sans-serif;
+        height: 550px;
+        margin: 0 auto;
+        position: relative;
+        width: 100%;
+    }
+
+    #money:before {
+        background: #333;
+        content: '';
+        opacity: 0.8;
+    }
+
+    #cash, #bank {
+        color: #FFF;
+        font: 700 18px/20px Helvetica, Arial, Verdana, sans-serif;
+        margin: 12px 0;
+        position: relative;
+        text-shadow: 1px 1px #000;
+        z-index: 1;
+    }
+
+    #bet, #your {
+        color: black;
+    }
+
+    #showing {
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 5px;
+        width: 80px;
+        height: 60px;
+        margin-bottom: 30px;
+    }
+
+    body {
         font-family: "Lato", sans-serif;
     }
 
@@ -498,523 +492,526 @@
 
     .ra
         /* Reset */
-        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-
-            margin:0;
-
-            padding:0;
-
-            border:0;
-
-            font-size:100%;
-
-            vertical-align:baseline;
-
-        }
-
-        h1{
-            font-size:35px;
-            text-align: center;
-            line-height: 40px;
-        }
-
-        h2{
-            font-size:30px;
-            text-align: center;
-            line-height: 40px;
-        }
-
-
-        p{
-            font-size:20px;
-            line-height: 40px;
-        }
-
-        a{
-            text-decoration: none;
-            color: #06C;
-        }
-
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            color: #333;
-            font-size: 15px;
-            line-height: 40px;
-            background-color: #FFFFFF;
-        }
-
-        .clear{
-            clear: both;
-        }
-
-        .top{
-            width: auto;
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: lightgoldenrodyellow;
-            min-height: 50px;
-            text-align: center;
-        }
-
-        .page{
-            width: auto;
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #fff;
-            min-height: 500px;
-            text-align: center;
-        }
-
-        .dealer-cards .card, .player-cards .card {
-            margin-left: 5px;
-        }
-
-        .dealer-cards .card:first-child, .player-cards .card:first-child{
-            margin-left: 0;
-        }
-
-        .new-cards .card:first-child{
-            margin-left: 5px;
-        }
-
-        .dealer-cards, .player-cards{
-            padding-top: 50px;
-            /*width: 164px;*/
-            margin: 0 auto;
-            display: inline-block;
-        }
-
-        .dealer-total, .player-total{
-            margin-top: 10px;
-        }
-
-        .buttons{
-            width: 210px;
-            margin: 20px auto 0 auto;
-        }
-
-        .flipped{
-            background-position: -158px -492px !important;
-        }
-
-
-        .btn {
-            font: bold 13px "Helvetica Neue", Helvetica, Arial, clean, sans-serif !important;
-            text-shadow: 0 -1px 1px rgba(0,0,0,0.25), -2px 0 1px rgba(0,0,0,0.25);
-            border-radius: 5px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-            display: inline-block;
-            white-space: nowrap;
-            text-decoration: none;
-            cursor: pointer;
-
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-            color: #468847;
-            border-style: none;
-            text-align: center;
-            overflow: visible;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            padding-top: 10px;
-            height: 40px;
-            width: 100px;
-            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-            box-sizing: border-box;         /* Opera/IE 8+ */
-        }
-
-        .btn:hover,
-        .btn:focus {
-            background-position: 0 -50px;
-            color: white;
-            background-color: #468847;
-        }
-
-        .btn:active {
-            background-color: #468847;
-            color: white;
-            -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7);
-            -webkit-box-shadow: none;
-        }
-
-        .card {
-            background-image: url(./cards.png);
-            float: left;
-            height: 123px;
-            width: 79px;
-        }
-
-        .message{
-            font-size: 25px;
-            margin-top: 30px;
-            height: 60px;
-        }
-
-        /*.dealer-total{*/
-            /*visibility: hidden;*/
-        /*}*/
-
-
-        /* Clubs */
-        .ace-of-clubs{
-            background-position: 0 0;
-        }
-
-        .two-of-clubs{
-            background-position: -79px 0;
-        }
-
-        .three-of-clubs{
-            background-position: -158px 0;
-        }
-
-        .four-of-clubs{
-            background-position: -237px 0;
-        }
-
-        .five-of-clubs{
-            background-position: -316px 0;
-        }
-
-        .six-of-clubs{
-            background-position: -395px 0;
-        }
-
-        .seven-of-clubs{
-            background-position: -474px 0;
-        }
-
-        .eight-of-clubs{
-            background-position: -553px 0;
-        }
-
-        .nine-of-clubs{
-            background-position: -632px 0;
-        }
-
-        .ten-of-clubs{
-            background-position: -711px 0;
-        }
-
-        .jack-of-clubs{
-            background-position: -790px 0;
-        }
-
-        .queen-of-clubs{
-            background-position: -869px 0;
-        }
-
-        .king-of-clubs{
-            background-position: -948px 0;
-        }
-
-
-
-
-        /* Spades */
-        .ace-of-spades{
-            background-position: 0 -123px;
-        }
-
-        .two-of-spades{
-            background-position: -79px -123px;
-        }
-
-        .three-of-spades{
-            background-position: -158px -123px;
-        }
-
-        .four-of-spades{
-            background-position: -237px -123px;
-        }
-
-        .five-of-spades{
-            background-position: -316px -123px;
-        }
-
-        .six-of-spades{
-            background-position: -395px -123px;
-        }
-
-        .seven-of-spades{
-            background-position: -474px -123px;
-        }
-
-        .eight-of-spades{
-            background-position: -553px -123px;
-        }
-
-        .nine-of-spades{
-            background-position: -632px -123px;
-        }
-
-        .ten-of-spades{
-            background-position: -711px -123px;
-        }
-
-        .jack-of-spades{
-            background-position: -790px -123px;
-        }
-
-        .queen-of-spades{
-            background-position: -869px -123px;
-        }
-
-        .king-of-spades{
-            background-position: -948px -123px;
-        }
-
-
-
-        /* Hearts */
-        .ace-of-hearts{
-            background-position: 0 -246px;
-        }
-
-        .two-of-hearts{
-            background-position: -79px -246px;
-        }
-
-        .three-of-hearts{
-            background-position: -158px -246px;
-        }
-
-        .four-of-hearts{
-            background-position: -237px -246px;
-        }
-
-        .five-of-hearts{
-            background-position: -316px -246px;
-        }
-
-        .six-of-hearts{
-            background-position: -395px -246px;
-        }
-
-        .seven-of-hearts{
-            background-position: -474px -246px;
-        }
-
-        .eight-of-hearts{
-            background-position: -553px -246px;
-        }
-
-        .nine-of-hearts{
-            background-position: -632px -246px;
-        }
-
-        .ten-of-hearts{
-            background-position: -711px -246px;
-        }
-
-        .jack-of-hearts{
-            background-position: -790px -246px;
-        }
-
-        .queen-of-hearts{
-            background-position: -869px -246px;
-        }
-
-        .king-of-hearts{
-            background-position: -948px -246px;
-        }
-
-
-        /* Diamonds */
-        .ace-of-diamonds{
-            background-position: 0 -369px;
-        }
-
-        .two-of-diamonds{
-            background-position: -79px -369px;
-        }
-
-        .three-of-diamonds{
-            background-position: -158px -369px;
-        }
-
-        .four-of-diamonds{
-            background-position: -237px -369px;
-        }
-
-        .five-of-diamonds{
-            background-position: -316px -369px;
-        }
-
-        .six-of-diamonds{
-            background-position: -395px -369px;
-        }
-
-        .seven-of-diamonds{
-            background-position: -474px -369px;
-        }
-
-        .eight-of-diamonds{
-            background-position: -553px -369px;
-        }
-
-        .nine-of-diamonds{
-            background-position: -632px -369px;
-        }
-
-        .ten-of-diamonds{
-            background-position: -711px -369px;
-        }
-
-        .jack-of-diamonds{
-            background-position: -790px -369px;
-        }
-
-        .queen-of-diamonds{
-            background-position: -869px -369px;
-        }
-
-        .king-of-diamonds{
-            background-position: -948px -369px;
-        }
-
-        .bet{
-            width: 50px;
-            margin: 0 auto;
-            height: 40px;
-        }
-
-        .betting-area{
-            width: 70px;
-            margin: 30px auto 30px auto;
-        }
-
-        .betting-area #more{
-            float: left;
-            width: 30px;
-        }
-
-        .betting-area #less{
-            float: left;
-            width: 30px;
-        }
-
-        .name{
-            color: green;
-            font-size: 21px;
-        }
-
-        .money{
-            color: green;
-            font-size: 21px;
-        }
-        #game {
-	        background: transparent url('https://www.clowerweb.com/cors/blackjack/table.png') 0 0 no-repeat;
-	        border-radius: 5px;
-	        color: #333;
-	        font: 14px/17px Helvetica, Arial, Verdana, sans-serif;
-	        height: 550px;
-	        margin: 0 auto;
-	        position: relative;
-	        width: 100%;
-	    }
-
-
-        #money:before {
-            background: #333;
-            content: '';
-            opacity: 0.8;
-        }
-
-        #cash, #bank {
-            color: #FFF;
-            font: 700 18px/20px Helvetica, Arial, Verdana, sans-serif;
-            margin: 12px 0;
-            position: relative;
-            text-shadow: 1px 1px #000;
-            z-index: 1;
-        }
-        #bet, #your{
-            color: black;
-        }
-        #showing{
-            border: 1px solid black;
-            background-color:white;
-            border-radius: 5px;
-            width:80px;
-            height: 60px;
-            margin-bottom: 30px;
-        }
-
-
-        body {
-            font-family: "Lato", sans-serif;
-        }
-
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+
+        margin: 0;
+
+        padding: 0;
+
+        border: 0;
+
+        font-size: 100%;
+
+        vertical-align: baseline;
+
+    }
+
+    h1 {
+        font-size: 35px;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    h2 {
+        font-size: 30px;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #06C;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333;
+        font-size: 15px;
+        line-height: 40px;
+        background-color: #FFFFFF;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .top {
+        width: auto;
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: lightgoldenrodyellow;
+        min-height: 50px;
+        text-align: center;
+    }
+
+    .page {
+        width: auto;
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #fff;
+        min-height: 500px;
+        text-align: center;
+    }
+
+    .dealer-cards .card, .player-cards .card {
+        margin-left: 5px;
+    }
+
+    .dealer-cards .card:first-child, .player-cards .card:first-child {
+        margin-left: 0;
+    }
+
+    .new-cards .card:first-child {
+        margin-left: 5px;
+    }
+
+    .dealer-cards, .player-cards {
+        padding-top: 50px;
+        /*width: 164px;*/
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+    .dealer-total, .player-total {
+        margin-top: 10px;
+    }
+
+    .buttons {
+        width: 210px;
+        margin: 20px auto 0 auto;
+    }
+
+    .flipped {
+        background-position: -158px -492px !important;
+    }
+
+    .btn {
+        font: bold 13px "Helvetica Neue", Helvetica, Arial, clean, sans-serif !important;
+        text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25), -2px 0 1px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        white-space: nowrap;
+        text-decoration: none;
+        cursor: pointer;
+
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #468847;
+        border-style: none;
+        text-align: center;
+        overflow: visible;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding-top: 10px;
+        height: 40px;
+        width: 100px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box; /* Firefox, other Gecko */
+        box-sizing: border-box; /* Opera/IE 8+ */
+    }
+
+    .btn:hover,
+    .btn:focus {
+        background-position: 0 -50px;
+        color: white;
+        background-color: #468847;
+    }
+
+    .btn:active {
+        background-color: #468847;
+        color: white;
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
+        -webkit-box-shadow: none;
+    }
+
+    .card {
+        background-image: url(./cards.png);
+        float: left;
+        height: 123px;
+        width: 79px;
+    }
+
+    .message {
+        font-size: 25px;
+        margin-top: 30px;
+        height: 60px;
+    }
+
+    /*.dealer-total{*/
+    /*visibility: hidden;*/
+    /*}*/
+
+    /* Clubs */
+    .ace-of-clubs {
+        background-position: 0 0;
+    }
+
+    .two-of-clubs {
+        background-position: -79px 0;
+    }
+
+    .three-of-clubs {
+        background-position: -158px 0;
+    }
+
+    .four-of-clubs {
+        background-position: -237px 0;
+    }
+
+    .five-of-clubs {
+        background-position: -316px 0;
+    }
+
+    .six-of-clubs {
+        background-position: -395px 0;
+    }
+
+    .seven-of-clubs {
+        background-position: -474px 0;
+    }
+
+    .eight-of-clubs {
+        background-position: -553px 0;
+    }
+
+    .nine-of-clubs {
+        background-position: -632px 0;
+    }
+
+    .ten-of-clubs {
+        background-position: -711px 0;
+    }
+
+    .jack-of-clubs {
+        background-position: -790px 0;
+    }
+
+    .queen-of-clubs {
+        background-position: -869px 0;
+    }
+
+    .king-of-clubs {
+        background-position: -948px 0;
+    }
+
+    /* Spades */
+    .ace-of-spades {
+        background-position: 0 -123px;
+    }
+
+    .two-of-spades {
+        background-position: -79px -123px;
+    }
+
+    .three-of-spades {
+        background-position: -158px -123px;
+    }
+
+    .four-of-spades {
+        background-position: -237px -123px;
+    }
+
+    .five-of-spades {
+        background-position: -316px -123px;
+    }
+
+    .six-of-spades {
+        background-position: -395px -123px;
+    }
+
+    .seven-of-spades {
+        background-position: -474px -123px;
+    }
+
+    .eight-of-spades {
+        background-position: -553px -123px;
+    }
+
+    .nine-of-spades {
+        background-position: -632px -123px;
+    }
+
+    .ten-of-spades {
+        background-position: -711px -123px;
+    }
+
+    .jack-of-spades {
+        background-position: -790px -123px;
+    }
+
+    .queen-of-spades {
+        background-position: -869px -123px;
+    }
+
+    .king-of-spades {
+        background-position: -948px -123px;
+    }
+
+    /* Hearts */
+    .ace-of-hearts {
+        background-position: 0 -246px;
+    }
+
+    .two-of-hearts {
+        background-position: -79px -246px;
+    }
+
+    .three-of-hearts {
+        background-position: -158px -246px;
+    }
+
+    .four-of-hearts {
+        background-position: -237px -246px;
+    }
+
+    .five-of-hearts {
+        background-position: -316px -246px;
+    }
+
+    .six-of-hearts {
+        background-position: -395px -246px;
+    }
+
+    .seven-of-hearts {
+        background-position: -474px -246px;
+    }
+
+    .eight-of-hearts {
+        background-position: -553px -246px;
+    }
+
+    .nine-of-hearts {
+        background-position: -632px -246px;
+    }
+
+    .ten-of-hearts {
+        background-position: -711px -246px;
+    }
+
+    .jack-of-hearts {
+        background-position: -790px -246px;
+    }
+
+    .queen-of-hearts {
+        background-position: -869px -246px;
+    }
+
+    .king-of-hearts {
+        background-position: -948px -246px;
+    }
+
+    /* Diamonds */
+    .ace-of-diamonds {
+        background-position: 0 -369px;
+    }
+
+    .two-of-diamonds {
+        background-position: -79px -369px;
+    }
+
+    .three-of-diamonds {
+        background-position: -158px -369px;
+    }
+
+    .four-of-diamonds {
+        background-position: -237px -369px;
+    }
+
+    .five-of-diamonds {
+        background-position: -316px -369px;
+    }
+
+    .six-of-diamonds {
+        background-position: -395px -369px;
+    }
+
+    .seven-of-diamonds {
+        background-position: -474px -369px;
+    }
+
+    .eight-of-diamonds {
+        background-position: -553px -369px;
+    }
+
+    .nine-of-diamonds {
+        background-position: -632px -369px;
+    }
+
+    .ten-of-diamonds {
+        background-position: -711px -369px;
+    }
+
+    .jack-of-diamonds {
+        background-position: -790px -369px;
+    }
+
+    .queen-of-diamonds {
+        background-position: -869px -369px;
+    }
+
+    .king-of-diamonds {
+        background-position: -948px -369px;
+    }
+
+    .bet {
+        width: 50px;
+        margin: 0 auto;
+        height: 40px;
+    }
+
+    .betting-area {
+        width: 70px;
+        margin: 30px auto 30px auto;
+    }
+
+    .betting-area #more {
+        float: left;
+        width: 30px;
+    }
+
+    .betting-area #less {
+        float: left;
+        width: 30px;
+    }
+
+    .name {
+        color: green;
+        font-size: 21px;
+    }
+
+    .money {
+        color: green;
+        font-size: 21px;
+    }
+
+    #game {
+        background: transparent url('https://www.clowerweb.com/cors/blackjack/table.png') 0 0 no-repeat;
+        border-radius: 5px;
+        color: #333;
+        font: 14px/17px Helvetica, Arial, Verdana, sans-serif;
+        height: 550px;
+        margin: 0 auto;
+        position: relative;
+        width: 100%;
+    }
+
+    #money:before {
+        background: #333;
+        content: '';
+        opacity: 0.8;
+    }
+
+    #cash, #bank {
+        color: #FFF;
+        font: 700 18px/20px Helvetica, Arial, Verdana, sans-serif;
+        margin: 12px 0;
+        position: relative;
+        text-shadow: 1px 1px #000;
+        z-index: 1;
+    }
+
+    #bet, #your {
+        color: black;
+    }
+
+    #showing {
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 5px;
+        width: 80px;
+        height: 60px;
+        margin-bottom: 30px;
+    }
+
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        text-indent: 30px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    @media screen and (max-height: 450px) {
         .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            text-indent: 30px;
+            padding-top: 15px;
         }
 
         .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
+            font-size: 18px;
         }
+    }
 
-        .sidenav a:hover {
-            color: #f1f1f1;
-        }
+    #playerTotal, #dealerTotal {
+        color: white;
+        font-size: 15px;
+    }
 
-        .sidenav .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
+    }
 
-        @media screen and (max-height: 450px) {
-          .sidenav {padding-top: 15px;}
-          .sidenav a {font-size: 18px;}
-        }
-
-        #playerTotal, #dealerTotal{
-            color: white;
-            font-size: 15px;
-        }
-
-}
-
-    </style>
+</style>
 </head>
 <body>
 <div class="page" id="login">
     <div>
-        <input type="text" id="input_login_name" />
-        <div class="buttons"><div class="btn" id="login_button">Login</div></div>
-        <div class="buttons"><div class="btn" id="signup_button">Signup</div></div>
+        <input type="text" id="input_login_name" onkeypress="if(event.keyCode==13) {login_onclick(); return false;}"/>
+        <div class="buttons">
+            <div class="btn" id="login_button" onclick="login_onclick()">Login</div>
+        </div>
+        <div class="buttons">
+            <div class="btn" id="signup_button">Signup</div>
+        </div>
     </div>
 </div>
 
-<div class="top" id="user_info" style="display: none" >
-    <div class="buttons"><div class="btn" id="rankbutton" onclick="openNav()">view rank</div></div>
+<div class="top" id="user_info" style="display: none">
+    <div class="buttons">
+        <div class="btn" id="rankbutton" onclick="openNav()">view rank</div>
+    </div>
     <div id="temp"></div>
     <div id="right">
         <b>Name : </b>
@@ -1028,7 +1025,9 @@
 <div class="page" id="lobby" style="display: none">
 
     <div>
-        <div class="buttons"><div class="btn" id="create_room_button">Create</div></div>
+        <div class="buttons">
+            <div class="btn" id="create_room_button">Create</div>
+        </div>
     </div>
 </div>
 
@@ -1042,9 +1041,16 @@
     <div class="dealer-cards"></div>
     <div class="clear"></div>
     <div class="player-cards"></div>
-    <div class="buttons"><div class="btn" id="hit">Hit</div><div class="btn" id="stand">Stand</div></div>
-    <div class="buttons"><div class="btn" id="doubledown">DoubleDown</div></div>
-    <div class="buttons"><div class="btn" id="deal">Deal</div></div>
+    <div class="buttons">
+        <div class="btn" id="hit">Hit</div>
+        <div class="btn" id="stand">Stand</div>
+    </div>
+    <div class="buttons">
+        <div class="btn" id="doubledown">DoubleDown</div>
+    </div>
+    <div class="buttons">
+        <div class="btn" id="deal">Deal</div>
+    </div>
     <div class="betting-area">
         <div id="showing">
             <h3 id="your">Your Bet</h3>
@@ -1064,7 +1070,7 @@
     var user;
     var gameRoomId;
 
-     function openNav() {
+    function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
     }
 
@@ -1072,44 +1078,45 @@
         document.getElementById("mySidenav").style.width = "0";
     }
 
-    $('#login_button').click(function() {
-        var loginName = $('#input_login_name').val();
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:8080/api/black-jack/login',
-            data: loginName,
-            contentType:'application/json;'
-        }).done(function(data) {
-            $('#login').hide();
-            $('#lobby').show();
-            user = data;
-            $('#name').html(user.name);
-            $('#money').html(user.account);
-            $('#user_info').show();
-
+    function login_onclick() {
+            var loginName = $('#input_login_name').val();
             $.ajax({
-                type: 'GET',
-                url: 'http://localhost:8080/api/black-jack/rankAccount'
-            }).done(function(data){
-                var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
-                for(var i = 0; i<data.length; i++){
-                    html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
-                }
-                $('#mySidenav').html(html);
+                type: 'POST',
+                url: 'http://localhost:8080/api/black-jack/login',
+                data: loginName,
+                contentType: 'application/json;'
+            }).done(function (data) {
+                $('#login').hide();
+                $('#lobby').show();
+                user = data;
+                $('#name').html(user.name);
+                $('#money').html(user.account);
+                $('#user_info').show();
 
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:8080/api/black-jack/rankAccount'
+                }).done(function (data) {
+                    var html = "<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<b> &nbsp; &nbsp;" + (i + 1) + ". " + data[i].name + " " + data[i].account + "</b><br/>"
+                    }
+                    $('#mySidenav').html(html);
+
+                });
+            }).fail(function () {
+                alert("등록되지 않은 계정입니다.\nSignup을 먼저 해주세요.");
             });
-        });
-    });
+    }
 
-
-    $('#signup_button').click(function() {
+    $('#signup_button').click(function () {
         var loginName = $('#input_login_name').val();
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/api/black-jack/users',
             data: loginName,
-            contentType:'application/json;'
-        }).done(function(data) {
+            contentType: 'application/json;'
+        }).done(function (data) {
             $('#login').hide();
             $('#lobby').show();
             user = data;
@@ -1120,10 +1127,10 @@
             $.ajax({
                 type: 'GET',
                 url: 'http://localhost:8080/api/black-jack/rankAccount'
-            }).done(function(data){
-                var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
-                for(var i = 0; i<data.length; i++){
-                    html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
+            }).done(function (data) {
+                var html = "<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                for (var i = 0; i < data.length; i++) {
+                    html += "<b> &nbsp; &nbsp;" + (i + 1) + ". " + data[i].name + " " + data[i].account + "</b><br/>"
                 }
                 $('#mySidenav').html(html);
 
@@ -1131,14 +1138,14 @@
         });
     });
 
-    $('#create_room_button').click(function() {
+    $('#create_room_button').click(function () {
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/api/black-jack/rooms',
             headers: {
-                'name':user.name
+                'name': user.name
             }
-        }).done(function(data) {
+        }).done(function (data) {
             $('#login').hide();
             $('#lobby').hide();
             $('#game').show();
@@ -1147,62 +1154,62 @@
         });
     });
 
-    $('#deal').click(function() {
+    $('#deal').click(function () {
         var bet = parseInt($('#bet').html());
 
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/bet',
             headers: {
-                'name':user.name
+                'name': user.name
             },
             data: JSON.stringify(bet),
-            contentType:'application/json;',
-        }).done(function(data) {
+            contentType: 'application/json;',
+        }).done(function (data) {
             drawGameRoom(data);
-            if(bet <= 10000) {
+            if (bet <= 10000) {
                 $('#doubledown').show();
             }
         });
     });
 
-    $('#hit').click(function() {
+    $('#hit').click(function () {
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/hit',
             headers: {
-                'name':user.name
+                'name': user.name
             },
-        }).done(function(data) {
+        }).done(function (data) {
             drawGameRoom(data);
         });
     });
 
-    $('#stand').click(function() {
+    $('#stand').click(function () {
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/stand',
             headers: {
-                'name':user.name
+                'name': user.name
             },
-        }).done(function(data) {
+        }).done(function (data) {
             drawGameRoom(data);
         });
     });
 
-    $('#doubledown').click(function() {
+    $('#doubledown').click(function () {
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/doubledown',
             headers: {
-                'name':user.name
+                'name': user.name
             },
-        }).done(function(data) {
+        }).done(function (data) {
             drawGameRoom(data);
         });
     });
 
-    $('#more').click(function(){
+    $('#more').click(function () {
         var bet = 1000;
         var currentBet = parseInt($('#bet').html());
         var money = parseInt($('#money').html());
@@ -1214,11 +1221,11 @@
         $('#money').html(money - bet);
     });
 
-    $('#less').click(function(){
+    $('#less').click(function () {
         var bet = 1000;
         var currentBet = parseInt($('#bet').html());
         var money = parseInt($('#money').html());
-        if(currentBet < bet) {
+        if (currentBet < bet) {
             bet = currentBet;
         }
 
@@ -1239,20 +1246,20 @@
                 type: 'POST',
                 url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/updateAccount',
                 headers: {
-                    'name':user.name
+                    'name': user.name
                 }
-            }).done(function(){
+            }).done(function () {
                 $.ajax({
                     type: 'GET',
                     url: 'http://localhost:8080/api/black-jack/rankAccount'
-                }).done(function(data){
-                    var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
-                    for(var i = 0; i<data.length; i++){
-                        html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
+                }).done(function (data) {
+                    var html = "<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<b> &nbsp; &nbsp;" + (i + 1) + ". " + data[i].name + " " + data[i].account + "</b><br/>"
                     }
                     console.log(data);
                     $('#mySidenav').html(html);
-            });
+                });
             });
 
         } else {
@@ -1265,7 +1272,7 @@
         }
 
         $('.dealer-cards').html("");
-        gameRoom.dealer.hand.cardList.forEach(function(card) {
+        gameRoom.dealer.hand.cardList.forEach(function (card) {
             $('.dealer-cards').append(generateCardDiv(card.rank, card.suit));
         });
         if (gameRoom.dealer.hand.cardList.length == 1) {
@@ -1276,7 +1283,7 @@
         }
 
         $('.player-cards').html("");
-        gameRoom.playerList[user.name].hand.cardList.forEach(function(card) {
+        gameRoom.playerList[user.name].hand.cardList.forEach(function (card) {
             $('.player-cards').append(generateCardDiv(card.rank, card.suit));
         });
         if (gameRoom.playerList[user.name].hand.cardList.length > 0) {
@@ -1286,7 +1293,6 @@
         $('#bet').html(gameRoom.playerList[user.name].currentBet);
         $('#money').html(gameRoom.playerList[user.name].balance);
     }
-
 
 
     function generateCardDiv(rank, suit) {
@@ -1334,7 +1340,7 @@
         }
         className += suit.toLowerCase();
 
-        return "<div class='card " + className + "' data-value='" + rank +"'></div>";
+        return "<div class='card " + className + "' data-value='" + rank + "'></div>";
     }
 </script>
 
