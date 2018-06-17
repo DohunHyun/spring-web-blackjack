@@ -77,4 +77,9 @@ public class BlackjackService {
 
         return gameRoom;
     }
+
+    public long getPlayerAccount(String roomId, String name) {
+        GameRoom gameRoom = gameRoomMap.get(roomId);
+        return gameRoom.getPlayerAccount(name);
+    }
 }
