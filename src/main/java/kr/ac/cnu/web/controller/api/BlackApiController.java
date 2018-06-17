@@ -53,10 +53,6 @@ public class BlackApiController {
         return userRepository.save(user);
     }
 
-
-
-
-
     @PostMapping("/rooms")
     public GameRoom createRoom(@RequestHeader("name") String name) {
         User user = this.getUserFromSession(name);
@@ -96,7 +92,6 @@ public class BlackApiController {
     public GameRoom getGameRoomData(@PathVariable String roomId) {
         return blackjackService.getGameRoom(roomId);
     }
-
 
     private User getUserFromSession(String name) {
         return userRepository.findById(name).orElseThrow(() -> new NoLoginException());
