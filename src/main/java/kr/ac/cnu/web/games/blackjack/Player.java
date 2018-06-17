@@ -45,8 +45,8 @@ public class Player {
 
         // 이전 경기에 베팅한 금액을 경기 종료 후 balance에서 차감했기에,
         // 현재 베팅한 금액과 이전 경기의 베팅 금액의 차이 만큼만 차감한다.
-        bet -= currentBet;
-        balance -= bet;
+        long diff_betWithCurBet = bet - currentBet;
+        balance -= diff_betWithCurBet;
         currentBet = bet;
 
         isPlaying = true;
@@ -61,7 +61,6 @@ public class Player {
         // 이전 금액을 default bet 금액으로 설정, 고로 승리 시 bet 금액 만큼 만 받는다.
         // blackjackwin은 1.5배
         balance += currentBet * 1.5;
-
     }
 
     public void win() {

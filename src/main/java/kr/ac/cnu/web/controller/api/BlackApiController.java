@@ -53,10 +53,6 @@ public class BlackApiController {
         return userRepository.save(user);
     }
 
-
-
-
-
     @PostMapping("/rooms")
     public GameRoom createRoom(@RequestHeader("name") String name) {
         User user = this.getUserFromSession(name);

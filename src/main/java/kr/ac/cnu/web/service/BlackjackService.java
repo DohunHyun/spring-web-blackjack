@@ -15,7 +15,6 @@ import java.util.Map;
 public class BlackjackService {
     private final int DECK_NUMBER = 1;
     private final Map<String, GameRoom> gameRoomMap = new HashMap<>();
-    private boolean checkDoubleDown = true;
 
     public GameRoom createGameRoom(User user) {
         Deck deck = new Deck(DECK_NUMBER);

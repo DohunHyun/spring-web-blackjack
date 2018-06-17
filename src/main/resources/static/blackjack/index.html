@@ -55,6 +55,15 @@
             clear: both;
         }
 
+        .top{
+            width: auto;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: lightgoldenrodyellow;
+            min-height: 50px;
+            text-align: center;
+        }
+
         .page{
             width: auto;
             max-width: 900px;
@@ -398,6 +407,11 @@
             width: 30px;
         }
 
+        .name{
+            color: green;
+            font-size: 21px;
+        }
+
         .money{
             color: green;
             font-size: 21px;
@@ -412,7 +426,17 @@
         <div class="buttons"><div class="btn" id="signup_button">Signup</div></div>
     </div>
 </div>
+
+<div class="top" id="user_info" style="display: none" >
+    <b>Name : </b>
+    <span id="name" class="name"></span>
+    <b> / Available Funds : </b>
+    <span id="money" class="money"></span>
+    <div class="clear"></div>
+</div>
+
 <div class="page" id="lobby" style="display: none">
+
     <div>
         <div class="buttons"><div class="btn" id="create_room_button">Create</div></div>
     </div>
@@ -431,11 +455,6 @@
             <div class="btn" id="less">-</div>
             <div class="btn" id="more">+</div>
         </div>
-        <div class="clear"></div>
-    </div>
-    <div>
-        <b>Available Funds</b><br>
-        <span id="money" class="money"></span>
         <div class="clear"></div>
     </div>
 </div>
@@ -457,6 +476,9 @@
             $('#login').hide();
             $('#lobby').show();
             user = data;
+            $('#name').html(user.name);
+            $('#money').html(user.account);
+            $('#user_info').show();
         });
     });
 
@@ -471,6 +493,9 @@
             $('#login').hide();
             $('#lobby').show();
             user = data;
+            $('#name').html(user.name);
+            $('#money').html(user.account);
+            $('#user_info').show();
         });
     });
 
