@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="./favicon.ico">
     <title>BlackJack_Realcoding</title>
 </head>
-    <style>
+<style>
         /* Reset */
         html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 
@@ -995,26 +995,66 @@
           .sidenav a {font-size: 18px;}
         }
 
-        #playerTotal, #dealerTotal{
+        #playerTotal, #deale'rTotal{
             color: white;
             font-size: 15px;
         }
+        #alert{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            display:none;
+        }
+
+        #writingTransparentBorder
+            {
+                background-color: #000000;
+                height: 150%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                margin: 0;
+                position: absolute;
+                opacity: 0.5;
+                z-index: 3;
+            }
+        #Add_Section{
+                display: none;
+            }
+         #Button_Click{
+	background-color: #ffffff;
+	width: 400px;
+	height: 350px;
+	margin: 100px 250px;
+	position: absolute;
+	z-index: 3;
+	border-radius: 5px;
+}
+
 
 }
 
-    </style>
+
+</style>
 </head>
 <body>
+
 <div class="page" id="login">
     <div>
-        <input type="text" id="input_login_name" />
-        <div class="buttons"><div class="btn" id="login_button">Login</div></div>
-        <div class="buttons"><div class="btn" id="signup_button">Signup</div></div>
+        <input type="text" id="input_login_name"/>
+        <div class="buttons">
+            <div class="btn" id="login_button">Login</div>
+        </div>
+        <div class="buttons">
+            <div class="btn" id="signup_button">Signup</div>
+        </div>
     </div>
 </div>
 
-<div class="top" id="user_info" style="display: none" >
-    <div class="buttons"><div class="btn" id="rankbutton" onclick="openNav()">view rank</div></div>
+<div class="top" id="user_info" style="display: none">
+    <div class="buttons">
+        <div class="btn" id="rankbutton" onclick="openNav()">view rank</div>
+    </div>
     <div id="temp"></div>
     <div id="right">
         <b>Name : </b>
@@ -1025,10 +1065,23 @@
     </div>
 </div>
 
+<section id="Add_Section">
+    <div id="writingTransparentBorder">
+    </div>
+    <div id="Button_Click">
+        <div>
+            <a style="color: black" class="closebtn" onclick="close()">&times;</a>
+        </div>
+    </div>
+</section>
+
+
 <div class="page" id="lobby" style="display: none">
 
     <div>
-        <div class="buttons"><div class="btn" id="create_room_button">Create</div></div>
+        <div class="buttons">
+            <div class="btn" id="create_room_button">Create</div>
+        </div>
     </div>
 </div>
 
@@ -1042,9 +1095,16 @@
     <div class="dealer-cards"></div>
     <div class="clear"></div>
     <div class="player-cards"></div>
-    <div class="buttons"><div class="btn" id="hit">Hit</div><div class="btn" id="stand">Stand</div></div>
-    <div class="buttons"><div class="btn" id="doubledown">DoubleDown</div></div>
-    <div class="buttons"><div class="btn" id="deal">Deal</div></div>
+    <div class="buttons">
+        <div class="btn" id="hit">Hit</div>
+        <div class="btn" id="stand" onclick="add_todo_button()">Stand</div>
+    </div>
+    <div class="buttons">
+        <div class="btn" id="doubledown">DoubleDown</div>
+    </div>
+    <div class="buttons">
+        <div class="btn" id="deal">Deal</div>
+    </div>
     <div class="betting-area">
         <div id="showing">
             <h3 id="your">Your Bet</h3>
@@ -1057,19 +1117,46 @@
         <div class="clear"></div>
     </div>
 </div>
+
+
 </body>
 <script src="./jquery-3.3.1.min.js"></script>
 
 <script>
     var user;
     var gameRoomId;
+    var winner;
+    var money;
 
+
+function add_todo_button(){
+  var modal = document.getElementById('Add_Section');
+  modal.style.display ="block";
+}
+function close_modal(){
+  var modal = document.getElementById('Add_Section');
+  modal.style.display ="none";
+}
      function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
     }
 
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
+    }
+
+    function resultfunc(){
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/api/black-jack/rankAccount'
+            }).done(function(data){
+                var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                for(var i = 0; i<data.length; i++){
+                    html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
+                }
+                $('#mySidenav').html(html);
+
+            });
     }
 
     $('#login_button').click(function() {
@@ -1229,6 +1316,9 @@
     function drawGameRoom(gameRoom) {
         console.log(gameRoom);
         if (gameRoom.finished) {
+            console.log(gameRoom.playerList[user.name].result + gameRoom.playerList[user.name].r_result);
+            $('#Button_Click').html(
+             "나의 상태는 "+gameRoom.playerList[user.name].result + " 변경 된 금액은 "+gameRoom.playerList[user.name].r_result + "<input type='button' style='color: black; float:right' class='closebtn' onclick='close_modal();' value='X'>");
             $('#deal').show();
             $('#more').show();
             $('#less').show();
@@ -1285,6 +1375,7 @@
 
         $('#bet').html(gameRoom.playerList[user.name].currentBet);
         $('#money').html(gameRoom.playerList[user.name].balance);
+
     }
 
 
@@ -1336,6 +1427,7 @@
 
         return "<div class='card " + className + "' data-value='" + rank +"'></div>";
     }
+
 </script>
 
 </html>
