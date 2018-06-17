@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="shortcut icon" href="./favicon.ico">
+    <title>BlackJack_Realcoding</title>
 </head>
     <style>
         /* Reset */
@@ -1144,7 +1145,7 @@
             gameRoomId = data.roomId;
             drawGameRoom(data);
         });
-    })
+    });
 
     $('#deal').click(function() {
         var bet = parseInt($('#bet').html());
@@ -1159,9 +1160,11 @@
             contentType:'application/json;',
         }).done(function(data) {
             drawGameRoom(data);
-            $('#doubledown').show();
+            if(bet <= 10000) {
+                $('#doubledown').show();
+            }
         });
-    })
+    });
 
     $('#hit').click(function() {
         $.ajax({
@@ -1173,7 +1176,7 @@
         }).done(function(data) {
             drawGameRoom(data);
         });
-    })
+    });
 
     $('#stand').click(function() {
         $.ajax({
@@ -1185,7 +1188,7 @@
         }).done(function(data) {
             drawGameRoom(data);
         });
-    })
+    });
 
     $('#doubledown').click(function() {
         $.ajax({
@@ -1197,7 +1200,7 @@
         }).done(function(data) {
             drawGameRoom(data);
         });
-    })
+    });
 
     $('#more').click(function(){
         var bet = 1000;
@@ -1264,7 +1267,7 @@
         $('.dealer-cards').html("");
         gameRoom.dealer.hand.cardList.forEach(function(card) {
             $('.dealer-cards').append(generateCardDiv(card.rank, card.suit));
-        })
+        });
         if (gameRoom.dealer.hand.cardList.length == 1) {
             $('.dealer-cards').append('<div class="card card2 flipped" data-value="6"></div>');
         }

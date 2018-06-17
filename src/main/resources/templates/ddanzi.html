@@ -30,7 +30,7 @@
         var request_uri = "http://www.ddanzi.com/";
         var current_mid = "index";
         var waiting_message = "서버에 요청 중입니다. 잠시만 기다려주세요.";
-        var ssl_actions = new Array("dispMemberModifyPassword","dispMemberSignUpForm","dispMemberModifyInfo","dispMemberModifyEmailAddress","dispMemberGetTempPassword","dispMemberResendAuthMail","dispMemberLoginForm","dispMemberFindAccount","dispMemberLeave","procMemberLogin","procMemberModifyPassword","procMemberInsert","procMemberModifyInfo","procMemberFindAccount","procMemberModifyEmailAddress","procMemberResendAuthMail","procMemberLeave","procMemberFindAccountByQuestion","dispOknameIpinResult","dispMemberInfo","dispOknameResult");
+        var ssl_actions = ["dispMemberModifyPassword","dispMemberSignUpForm","dispMemberModifyInfo","dispMemberModifyEmailAddress","dispMemberGetTempPassword","dispMemberResendAuthMail","dispMemberLoginForm","dispMemberFindAccount","dispMemberLeave","procMemberLogin","procMemberModifyPassword","procMemberInsert","procMemberModifyInfo","procMemberFindAccount","procMemberModifyEmailAddress","procMemberResendAuthMail","procMemberLeave","procMemberFindAccountByQuestion","dispOknameIpinResult","dispMemberInfo","dispOknameResult"];
         var default_url = "http://www.ddanzi.com/";
         var http_port = 80;var https_port = 443;</script>
     <!--[if lt IE 9]><script src="/common/js/jquery-1.x.min.js?20171019141213"></script>
@@ -698,7 +698,7 @@
     Criteo.events.push(function() {
         var adUnits = {
             placements: [{"slotId":"criteo-1130552","zoneId":"1130552"},{"slotId":"criteo-1130556","zoneId":"1130556"},{"slotId":"criteo-1130557","zoneId":"1130557"},{"slotId":"criteo-1130558","zoneId":"1130558"}]
-        }
+        };
         Criteo.Passback.RequestBids(adUnits , 2000);
     });
 </script>
