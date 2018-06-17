@@ -50,7 +50,11 @@
         line-height: 40px;
         background-color: #FFFFFF;
     }
-
+    #login{
+        background-image: url('../images/main_back.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
     .clear {
         clear: both;
     }
@@ -940,6 +944,10 @@
         font-family: "Lato", sans-serif;
     }
 
+    #input_login_name{
+        border: #d6e9c6 solid 4px;
+        border-radius: 7px;
+    }
     .sidenav {
         height: 100%;
         width: 0;
@@ -991,18 +999,16 @@
         font-size: 15px;
     }
 
-    }
-
 </style>
 </head>
 <body>
 <div class="page" id="login">
     <div>
-        <input type="text" id="input_login_name" onkeypress="if(event.keyCode==13) {login_onclick(); return false;}"/>
+        <br/>
+        <span style="color:white"> ID : </span>
+        <input type="text" id="input_login_name" autofocus="autofocus"  onkeypress="if(event.keyCode==13) {login_onclick(); return false;}"/>
         <div class="buttons">
             <div class="btn" id="login_button" onclick="login_onclick()">Login</div>
-        </div>
-        <div class="buttons">
             <div class="btn" id="signup_button">Signup</div>
         </div>
     </div>
