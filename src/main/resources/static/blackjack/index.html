@@ -416,6 +416,13 @@
             color: green;
             font-size: 21px;
         }
+        .ranking{
+            border: 1px solid black;
+            width: 150px;
+            height: 300px;
+
+        }
+
     </style>
 </head>
 <body>
@@ -442,6 +449,7 @@
     </div>
 </div>
 <div class="page" id="game" style="display: none">
+    <div id="ranking_ac" class="ranking"></div>
     <div class="dealer-cards"></div>
     <div class="clear"></div>
     <div class="player-cards"></div>
@@ -479,6 +487,14 @@
             $('#name').html(user.name);
             $('#money').html(user.account);
             $('#user_info').show();
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/api/black-jack/rankAccount'
+            }).done(function(data){
+
+                $('#ranking_ac').html(data);
+            });
         });
     });
 
@@ -496,6 +512,14 @@
             $('#name').html(user.name);
             $('#money').html(user.account);
             $('#user_info').show();
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/api/black-jack/rankAccount'
+            }).done(function(data){
+                console.log(data);
+              $('#ranking_ac').html(data);
+            });
         });
     });
 
@@ -607,6 +631,17 @@
                 headers: {
                     'name':user.name
                 },
+            });
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/api/black-jack/rankAccount'
+            }).done(function(data){
+                var html ="";
+                for(var i = 0; i<data.length; i++){
+                    html+="<b>"+(i+1)+"."+data[i].name+" "+data[i].account+"</b><br/>"
+                }
+                $('#ranking_ac').html(html);
+
             });
         } else {
             $('#deal').hide();

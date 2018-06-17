@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.awt.*;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -93,6 +95,23 @@ public class BlackApiController {
         long result = blackjackService.getPlayerAccount(roomId,name);
         user.setAccount(result);
        userRepository.save(user);
+    }
+
+    @GetMapping("/rankAccount")
+    public List<User> rankAccount() {
+       List<User> users = userRepository.findAll();
+       users.sort(new Comparator<User>() {
+           @Override
+           public int compare(User o1, User o2) {
+               if( o1.getAccount() > o2.getAccount() )
+                   return -1;
+               else if( o1.getAccount() < o2.getAccount() )
+                   return 1;
+               else
+                   return 0;
+           }
+       });
+       return users;
     }
 
 
