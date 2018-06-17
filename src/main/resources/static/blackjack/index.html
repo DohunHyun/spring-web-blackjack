@@ -994,6 +994,11 @@
           .sidenav a {font-size: 18px;}
         }
 
+        #playerTotal, #dealerTotal{
+            color: white;
+            font-size: 15px;
+        }
+
 }
 
     </style>
@@ -1085,8 +1090,12 @@
                 type: 'GET',
                 url: 'http://localhost:8080/api/black-jack/rankAccount'
             }).done(function(data){
+                var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                for(var i = 0; i<data.length; i++){
+                    html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
+                }
+                $('#mySidenav').html(html);
 
-                $('#mySidenav').html(data);
             });
         });
     });
@@ -1111,8 +1120,12 @@
                 type: 'GET',
                 url: 'http://localhost:8080/api/black-jack/rankAccount'
             }).done(function(data){
-                console.log(data);
-              $('#mySidenav').html(data);
+                var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                for(var i = 0; i<data.length; i++){
+                    html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
+                }
+                $('#mySidenav').html(html);
+
             });
         });
     });
@@ -1224,19 +1237,21 @@
                 url: 'http://localhost:8080/api/black-jack/rooms/' + gameRoomId + '/updateAccount',
                 headers: {
                     'name':user.name
-                },
-            });
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:8080/api/black-jack/rankAccount'
-            }).done(function(data){
-                var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
-                for(var i = 0; i<data.length; i++){
-                    html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
                 }
-                $('#mySidenav').html(html);
-
+            }).done(function(){
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:8080/api/black-jack/rankAccount'
+                }).done(function(data){
+                    var html ="<a href='javascript:void(0)' class='closebtn' onclick='closeNav()'>&times</a><br/>";
+                    for(var i = 0; i<data.length; i++){
+                        html+="<b> &nbsp; &nbsp;"+(i+1)+". "+data[i].name+" "+data[i].account+"</b><br/>"
+                    }
+                    console.log(data);
+                    $('#mySidenav').html(html);
             });
+            });
+
         } else {
             $('#deal').hide();
             $('#more').hide();
