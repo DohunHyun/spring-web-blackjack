@@ -20,7 +20,7 @@ import java.io.IOException;
 public class MybatisConfig {
     @Bean(name = "sqlSessionFactory")
     @ConfigurationProperties(prefix = "application.mybatis")
-    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) throws IOException {
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         return sqlSessionFactoryBean;
