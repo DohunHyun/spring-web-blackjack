@@ -553,7 +553,9 @@
             contentType:'application/json;',
         }).done(function(data) {
             drawGameRoom(data);
-            $('#doubledown').show();
+            if(bet <= 10000) {
+                $('#doubledown').show();
+            }
         });
     });
 
