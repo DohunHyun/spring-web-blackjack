@@ -109,6 +109,4 @@ public class Player {
         r_result = currentBet;
         checkDoubleDown = true;
     }
-
-
 }
