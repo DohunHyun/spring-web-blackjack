@@ -44,7 +44,7 @@ public class Player {
         if (balance < min_Bet) {
             bet = balance;
         }
-        if (balance < bet) {
+        if (balance + currentBet < bet) {
             throw new NotEnoughBalanceException();
         }
 
