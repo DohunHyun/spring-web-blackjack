@@ -1250,7 +1250,9 @@
             contentType: 'application/json;',
         }).done(function (data) {
             drawGameRoom(data);
-            if (bet <= 10000) {
+            if (bet == 0) {
+                alert("최소 금액이상 배팅해주세요.");
+            } else if (bet <= 10000) {
                 $('#doubledown').show();
             } else {
                 alert("최대 배팅 가능 금액 10000원을 넘었습니다. 다시 배팅해주세요.");
